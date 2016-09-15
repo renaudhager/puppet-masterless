@@ -2,5 +2,6 @@
 profiles::system::packages::packages:
   dstat: {}
   tree: {}
+  git: {}
   r10k:
     provider: 'gem'
