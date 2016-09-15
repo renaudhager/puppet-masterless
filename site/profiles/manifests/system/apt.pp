@@ -5,7 +5,7 @@
 # Required modules:
 # - puppetlabs/apt
 #
-class profiles::apt (
+class profiles::system::apt (
   $proxy_host      = undef,
   $proxy_port      = undef,
   $location        = undef,

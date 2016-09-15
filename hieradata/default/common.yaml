@@ -1,5 +1,4 @@
 ---
 include:
   classes:
-    # Resources : Users / Groups / SSHKeys / Files / Crons
-    - profiles::resources
+    - profiles::system::packages
