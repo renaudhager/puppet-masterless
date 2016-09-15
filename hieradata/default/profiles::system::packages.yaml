@@ -1,0 +1,6 @@
+---
+profiles::system::packages::packages:
+  dstat: {}
+  tree: {}
+  r10k:
+    provider: 'gem'

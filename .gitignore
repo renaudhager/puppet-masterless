@@ -1,3 +1,5 @@
 /modules
 /site/profiles/Gemfile.lock
 /site/profiles/spec/fixtures
+/.tmp
+/.librarian
