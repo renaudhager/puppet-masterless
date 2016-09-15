@@ -1,0 +1,5 @@
+---
+include:
+  classes:
+    - apt
+    - profiles::system::apt

@@ -1,0 +1,32 @@
+---
+profiles::system::apt::sources:
+  "%{::lsbdistcodename}_main_restricted":
+    release: "%{::lsbdistcodename}"
+    repos: main restricted
+  "%{::lsbdistcodename}-updates_main_restricted":
+    release: "%{::lsbdistcodename}-updates"
+    repos: main restricted
+  "%{::lsbdistcodename}-security_main_restricted":
+    location: "http://security.ubuntu.com/ubuntu"
+    release: "%{::lsbdistcodename}-security"
+    repos: main restricted
+  "%{::lsbdistcodename}_universe":
+    release: "%{::lsbdistcodename}"
+    repos: universe
+  "%{::lsbdistcodename}-updates_universe":
+    release: "%{::lsbdistcodename}-updates"
+    repos: universe
+  "%{::lsbdistcodename}-security_universe":
+    location: "http://security.ubuntu.com/ubuntu"
+    release: "%{::lsbdistcodename}-security"
+    repos: universe
+  "%{::lsbdistcodename}_multiverse":
+    release: "%{::lsbdistcodename}"
+    repos: multiverse
+  "%{::lsbdistcodename}-updates_multiverse":
+    release: "%{::lsbdistcodename}-updates"
+    repos: multiverse
+  "%{::lsbdistcodename}-security_multiverse":
+    location: "http://security.ubuntu.com/ubuntu"
+    release: "%{::lsbdistcodename}-security"
+    repos: multiverse
