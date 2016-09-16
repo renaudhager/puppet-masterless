@@ -1,0 +1,6 @@
+---
+include:
+  classes:
+    - mesos
+    - mesos::slave
+    - consul
