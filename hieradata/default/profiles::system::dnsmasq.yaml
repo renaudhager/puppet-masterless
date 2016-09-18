@@ -1,0 +1,5 @@
+---
+profiles::system::dnsmasq::conf:
+  'consul-config':
+    ensure: 'present'
+    source: 'puppet:///modules/profiles/system/dnsmasq/10-consul'

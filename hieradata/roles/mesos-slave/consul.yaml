@@ -1,4 +1,7 @@
 ---
+consul::version: '0.6.4'
+consul::manage_user: false
+consul::manage_group: false
 consul::config_hash:
     server: false
     datacenter: 'vgt'

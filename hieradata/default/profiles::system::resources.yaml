@@ -1,0 +1,23 @@
+---
+profiles::system::resources::groups:
+  # Setup consul group
+  'consul':
+    gid: 1002
+
+profiles::system::resources::users:
+  # Setup consul user
+  'consul':
+    uid: 1002
+    gid: 1002
+    home: '/home/consul'
+    managehome: true
+    require: 'Group[consul]'
+
+profiles::system::resources::files:
+  # Setup consul user/group/dir
+  '/home/consul':
+    ensure: 'directory'
+    owner: 'consul'
+    group: 'consul'
+    mode: '0755'
+    require: 'User[consul]'

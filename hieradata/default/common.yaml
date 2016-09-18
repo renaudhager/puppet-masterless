@@ -2,3 +2,6 @@
 include:
   classes:
     - profiles::system::packages
+    - profiles::system::resources
+    - dnsmasq
+    - profiles::system::dnsmasq
