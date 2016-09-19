@@ -31,6 +31,7 @@ class profiles::system::dnsmasq (
     group   => 'root',
     mode    => '0644',
     content => template( 'profiles/system/dnsmasq/resolv.erb' ),
+    notify  => Service['dnsmasq'],
   }
 
 }

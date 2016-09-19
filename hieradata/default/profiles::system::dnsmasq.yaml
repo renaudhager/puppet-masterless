@@ -2,6 +2,8 @@
 profiles::system::dnsmasq::upstream_server:
   - 10.0.2.3
 profiles::system::dnsmasq::conf:
-  'consul-config':
-    ensure: 'present'
-    source: 'puppet:///modules/profiles/system/dnsmasq/10-consul'
+  'consul':
+    content: |
+             # Enable forward lookup of the 'consul' domain:
+             server=/consul/127.0.0.1#8600
+             resolv-file=/var/run/dnsmasq/resolv.conf
