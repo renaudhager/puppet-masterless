@@ -5,3 +5,4 @@ include:
     - profiles::system::resources
     - dnsmasq
     - profiles::system::dnsmasq
+    - resolv_conf

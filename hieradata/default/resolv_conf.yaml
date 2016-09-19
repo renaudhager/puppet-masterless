@@ -1,0 +1,7 @@
+---
+resolv_conf::nameservers:
+  - localhost
+resolv_conf::searchpath:
+  - node.vgt.consul
+  - node.consul
+  - vgt.lan
