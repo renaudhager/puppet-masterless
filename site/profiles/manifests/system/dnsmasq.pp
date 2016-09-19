@@ -6,7 +6,8 @@
 # - saz/dnsmasq
 #
 class profiles::system::dnsmasq (
-
+  Hash $conf = {},
+  Array $upstream_server = [],
 )  {
   # Deep Merge bug
   $dnsmasq_conf = hiera_hash( 'profiles::system::dnsmasq::conf', {} )
@@ -29,7 +30,7 @@ class profiles::system::dnsmasq (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => ('profiles/system/dnsmasq/resol.conf')
+    content => template( 'profiles/system/dnsmasq/resolv.erb' ),
   }
 
 }
