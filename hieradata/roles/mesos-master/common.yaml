@@ -1,0 +1,7 @@
+---
+include:
+  classes:
+    - consul
+    - mesos
+    - mesos::master
+    - zookeeper

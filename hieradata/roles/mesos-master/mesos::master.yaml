@@ -1,0 +1,6 @@
+---
+mesos::master::cluster: 'vgt'
+mesos::master::listen_address: '%{ipaddress_eth1}'
+mesos::master::options:
+  quorum: '2'
+  hostname: '%{::hostname}'

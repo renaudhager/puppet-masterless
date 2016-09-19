@@ -1,6 +1,6 @@
 ---
 mesos::repo: 'mesosphere'
 mesos::zookeeper:
-  - '172.16.10.11:2181'
-  - '172.16.10.12:2181'
-  - '172.16.10.13:2181'
+  - 'compute-ma01:2181'
+  - 'compute-ma02:2181'
+  - 'compute-ma03:2181'

@@ -1,0 +1,5 @@
+---
+zookeeper::servers:
+  1: 'compute-ma01.node.vgt.consul'
+  2: 'compute-ma02.node.vgt.consul'
+  3: 'compute-ma03.node.vgt.consul'
