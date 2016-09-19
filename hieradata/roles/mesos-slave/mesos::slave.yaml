@@ -1,2 +1,6 @@
 ---
 mesos::slave::enable: true
+mesos::slave::options:
+  containerizers: 'docker,mesos'
+  hostname: '%{::fqdn}'
+  isolation: 'cgroups/cpu,cgroups/mem'
