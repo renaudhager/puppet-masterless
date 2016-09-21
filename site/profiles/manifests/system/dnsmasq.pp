@@ -26,7 +26,7 @@ class profiles::system::dnsmasq (
     notify  => Service['dnsmasq'],
   }
 
-  file { '/var/run/dnsmasq/resolv.conf':
+  file { '/etc/dnsmasq_resolv.conf':
     owner   => 'root',
     group   => 'root',
     mode    => '0644',

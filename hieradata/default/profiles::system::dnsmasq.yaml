@@ -6,4 +6,4 @@ profiles::system::dnsmasq::conf:
     content: |
              # Enable forward lookup of the 'consul' domain:
              server=/consul/127.0.0.1#8600
-             resolv-file=/var/run/dnsmasq/resolv.conf
+             resolv-file=/etc/dnsmasq_resolv.conf
