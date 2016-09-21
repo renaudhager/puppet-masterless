@@ -1,5 +1,6 @@
 ---
 mesos::slave::enable: true
+mesos::slave::listen_address: '%{ipaddress_eth1}'
 mesos::slave::options:
   containerizers: 'docker,mesos'
   hostname: '%{::fqdn}'

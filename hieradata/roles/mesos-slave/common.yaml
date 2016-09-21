@@ -5,3 +5,5 @@ include:
     - mesos::slave
     - consul
     - docker
+    - zookeeper
+    - zookeeper::service
