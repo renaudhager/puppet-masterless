@@ -25,6 +25,7 @@ class profiles::marathon::install (
     package_ensure => 'present',
     manage_repo    => false,
     install_java   => false,
+    extra_options  => '--task_launch_timeout 600000',
     require        => Exec['configure_java'],
   }
 }

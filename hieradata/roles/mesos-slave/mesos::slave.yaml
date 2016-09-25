@@ -5,3 +5,4 @@ mesos::slave::options:
   containerizers: 'docker,mesos'
   hostname: '%{::fqdn}'
   isolation: 'cgroups/cpu,cgroups/mem'
+  executor_registration_timeout: '10mins'
