@@ -7,3 +7,4 @@ include:
     - profiles::system::dnsmasq
     - resolv_conf
     - hosts
+    - ntp
