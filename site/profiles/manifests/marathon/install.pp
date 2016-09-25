@@ -45,11 +45,13 @@ class profiles::marathon::install (
 
   }
 
+  # TODO : Need to put theses var in hiera
   class { '::marathon':
     package_ensure => 'present',
     manage_repo    => false,
     install_java   => false,
     extra_options  => '--task_launch_timeout 600000',
+    zk             => [ 'compute-ma01.node.vgt.consul:2181', 'compute-ma02.node.vgt.consul:2181', 'compute-ma03.node.vgt.consul:2181' ],
     require        => [ Exec['configure_java'], File['/etc/marathon/conf/hostname'] ],
   }
 }
