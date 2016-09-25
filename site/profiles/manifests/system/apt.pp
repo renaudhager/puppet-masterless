@@ -15,8 +15,8 @@ class profiles::system::apt (
   $key_server      = undef,
 ) {
   # DeepMerge bug, we have to set this here
-  $sources = hiera_hash( 'profiles::apt::sources', {} )
-  $keys    = hiera_hash( 'profiles::apt::keys', {} )
+  $sources = hiera_hash( 'profiles::system::apt::sources', {} )
+  $keys    = hiera_hash( 'profiles::system::apt::keys', {} )
 
   if ! $location {
     case $::operatingsystem {
