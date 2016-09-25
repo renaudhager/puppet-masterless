@@ -14,3 +14,18 @@ consul::config_hash:
     # ui_dir: '/home/consul/ui'
     # addresses:
     #   http: 10.0.2.15
+
+consul::services:
+  marathon:
+    address: "%{::ipaddress_eth1}"
+    checks:
+      - script: "curl localhost:8080 >/dev/null 2>&1"
+        interval: 10s
+    port: 8080
+    tags:
+      - "marathon"
+  zookeeper:
+    address: "%{::ipaddress_eth1}"
+    port: 2181
+    tags:
+      - "zookeeper"
