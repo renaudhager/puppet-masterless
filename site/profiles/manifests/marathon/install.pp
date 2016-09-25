@@ -21,11 +21,35 @@ class profiles::marathon::install (
     require => Exec['install_java8'],
   }
 
+  file { '/etc/marathon/':
+    ensure => 'directory',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+  }
+
+  file { '/etc/marathon/conf/':
+    ensure  => 'directory',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    require => File['/etc/marathon/'],
+  }
+
+  file { '/etc/marathon/conf/hostname':
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $::hostname,
+    require => File['/etc/marathon/conf/'],
+
+  }
+
   class { '::marathon':
     package_ensure => 'present',
     manage_repo    => false,
     install_java   => false,
     extra_options  => '--task_launch_timeout 600000',
-    require        => Exec['configure_java'],
+    require        => [ Exec['configure_java'], File['/etc/marathon/conf/hostname'] ],
   }
 }
