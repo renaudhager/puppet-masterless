@@ -3,7 +3,6 @@ include:
   classes:
     - mesos
     - mesos::slave
-    - consul
     - docker
     - zookeeper
     - zookeeper::service

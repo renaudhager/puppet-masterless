@@ -4,6 +4,7 @@ include:
     - profiles::system::packages
     - profiles::system::resources
     - dnsmasq
+    - consul
     - profiles::system::dnsmasq
     - resolv_conf
     - hosts
