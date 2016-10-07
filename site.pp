@@ -10,6 +10,7 @@ if empty( hiera( 'role', undef ) )
   case $::hostname {
     /compute-sl\d\d$/:  { $role = 'mesos-slave' }
     /compute-ma\d\d$/:  { $role = 'mesos-master' }
+    /util-puppetdb\d\d$/:  { $role = 'puppetdb' }
     default:            { $role = undef }
   }
 }

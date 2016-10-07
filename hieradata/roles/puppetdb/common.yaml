@@ -1,0 +1,8 @@
+---
+include:
+  classes:
+    - puppetdb
+    - puppetdb::database::postgresql
+    - puppetdb::server
+    - nginx
+    - profiles::puppetdb::vhosts

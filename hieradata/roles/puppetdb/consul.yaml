@@ -1,0 +1,10 @@
+---
+consul::services:
+  puppetdb:
+    address: "%{::ipaddress_eth1}"
+    checks:
+      - script: "curl localhost:8081 >/dev/null 2>&1"
+        interval: 10s
+    port: 8081
+    tags:
+      - "puppetdb"

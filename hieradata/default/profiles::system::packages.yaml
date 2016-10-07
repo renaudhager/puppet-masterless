@@ -3,5 +3,6 @@ profiles::system::packages::packages:
   dstat: {}
   tree: {}
   git: {}
+  puppetdb-termini: {}
   r10k:
     provider: 'gem'
