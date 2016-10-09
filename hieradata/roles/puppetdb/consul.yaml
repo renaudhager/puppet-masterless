@@ -3,7 +3,7 @@ consul::services:
   puppetdb:
     address: "%{::ipaddress_eth1}"
     checks:
-      - script: "curl localhost:8081 >/dev/null 2>&1"
+      - script: "curl -k https://172.16.10.9:8081 >/dev/null 2>&1"
         interval: 10s
     port: 8081
     tags:

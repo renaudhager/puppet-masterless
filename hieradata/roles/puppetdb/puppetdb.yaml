@@ -12,9 +12,7 @@ puppetdb::java_args:
   '-Xmx': 512M
   '-Xms': 512M
 puppetdb::ssl_deploy_certs: true
-# puppetdb::ssl_cert_path: '/etc/puppetlabs/puppetdb/ssl/public.pem'
-# puppetdb::ssl_key_path: '/etc/puppetlabs/puppetdb/ssl/private.pem'
-# puppetdb::ssl_ca_cert_path: '/etc/puppetlabs/puppetdb/ssl/ca.pem'
+puppetdb::ssl_set_cert_paths: true
 puppetdb::ssl_key: |
   -----BEGIN RSA PRIVATE KEY-----
   MIIEpAIBAAKCAQEArsqiOqIKTBG+BJjU89Mk+Crnnq39ijqOtivZ0kVSkGJxfMh3
