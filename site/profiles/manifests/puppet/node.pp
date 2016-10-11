@@ -8,16 +8,36 @@
 # TODO : Make Unt tests
 class profiles::puppet::node (
   String $puppetdb_url                 = 'https://puppetdb.service.consul:8081',
-  String $puppetdb_port                = '8081',
+  String $puppetdb_url_timeout         = '5',
   String $puppetdb_conf_file           = '/etc/puppetlabs/puppet/puppetdb.conf',
   Boolean $puppetdb_soft_write_failure = true,
-  Boolean $puppet_storeconfigs         = true,
+  Boolean $puppet_storeconfigs         = false,
   String $puppet_conf_file             = '/etc/puppetlabs/puppet/puppet.conf',
   String $puppet_storeconfigs_backend  = 'puppetdb',
   Boolean $puppet_report               = true,
-  String $puppet_reports               = 'store, puppetdb',
+  String $puppet_reports               = 'puppetdb',
+  String $puppet_routes                = 'undef',
+  String $puppet_pkg_version           = 'present',
+  String $puppet_hiera_config          = '/etc/puppetlabs/code/hiera.yaml'
 
 )  {
+
+  package { 'puppet-agent':
+    ensure => $puppet_pkg_version,
+  }
+
+  Ini_setting {
+    require => Package['puppet-agent'],
+  }
+
+  if $puppet_routes != 'undef' {
+    file { '/etc/puppetlabs/puppet/routes.yaml':
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => $puppet_routes,
+    }
+  }
 
   # TODO: use a HASH
   # Setup puppetdb config file
@@ -29,15 +49,12 @@ class profiles::puppet::node (
     value   => $puppetdb_url,
   }
 
-  # This param is already setup by
-  if $::role != 'puppetdb' {
-    ini_setting { 'puppetdb_port':
-      ensure  => present,
-      path    => $puppetdb_conf_file,
-      section => 'main',
-      setting => 'port',
-      value   => $puppetdb_port,
-    }
+  ini_setting { 'server_url_timeout':
+    ensure  => present,
+    path    => $puppetdb_conf_file,
+    section => 'main',
+    setting => 'server_url_timeout',
+    value   => $puppetdb_url_timeout,
   }
 
   ini_setting { 'puppetdb_soft_write_failure':
@@ -57,12 +74,14 @@ class profiles::puppet::node (
     value   => $puppet_storeconfigs,
   }
 
-  ini_setting { 'puppet_storeconfigs_backend':
-    ensure  => present,
-    path    => $puppet_conf_file,
-    section => 'main',
-    setting => 'storeconfigs_backend',
-    value   => $puppet_storeconfigs_backend,
+  if  $puppet_storeconfigs {
+    ini_setting { 'puppet_storeconfigs_backend':
+      ensure  => present,
+      path    => $puppet_conf_file,
+      section => 'main',
+      setting => 'storeconfigs_backend',
+      value   => $puppet_storeconfigs_backend,
+    }
   }
 
   ini_setting { 'puppet_report':
@@ -79,6 +98,14 @@ class profiles::puppet::node (
     section => 'main',
     setting => 'reports',
     value   => $puppet_reports,
+  }
+
+  ini_setting { 'puppet_hiera_config':
+    ensure  => present,
+    path    => $puppet_conf_file,
+    section => 'main',
+    setting => 'hiera_config',
+    value   => $puppet_hiera_config,
   }
 
 }
