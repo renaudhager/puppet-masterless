@@ -1,18 +1,4 @@
 ---
-# profiles::system::resources::groups:
-#   # Setup consul group
-#   'consul':
-#     gid: 1002
-#
-# profiles::system::resources::users:
-#   # Setup consul user
-#   'consul':
-#     uid: 1002
-#     gid: 1002
-#     home: '/home/consul'
-#     managehome: true
-#     require: 'Group[consul]'
-
 profiles::system::resources::files:
   # Setup consul user/group/dir
   '/home/consul':
@@ -21,3 +7,13 @@ profiles::system::resources::files:
     group: 'consul'
     mode: '0755'
     require: 'User[consul]'
+profiles::resources::users:
+  'renaud':
+    comment: 'Renaud'
+    uid: '1981'
+    home: '/home/renaud'
+profiles::resources::sshkeys:
+  'renaud@renaud':
+    user: renaud
+    type: 'ssh-rsa'
+    key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDV5eSyd3JE2AD/9s/ix/yLfb561XRZRLOviWTlNGtIiD+2lwpH/dOjzZ+Z3gwyc1JwcQ/JOwHNJDBdGbxloKzrzx4BZEAZV18o4lDMMbZBfivUmXGCnIi52FMH3wqwWGVZiuW6xi6cOMx52x7itHXNu8cjd6aCgmSIHS73QCS56owVRKKowc/YiRFt7h7NZ4k/3CnzJgWJ2BmRU3wE5Q3Yt/f56TkA59Ny6I1JNuUHlbohIOkg38ltyPE4klUmrZc7lthnkyYewr8HModQYjl0f+Y/H/KaALD3w9sxlia1PPRAIjDvtqucRoNslKrFjfeUElP0XNKI4NJoaN72tar1'

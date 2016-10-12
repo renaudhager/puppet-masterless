@@ -3,6 +3,7 @@ include:
   classes:
     - profiles::system::packages
     - profiles::system::resources
+    - profiles::system::sudo
     - profiles::puppet::node
     - dnsmasq
     - consul
