@@ -18,7 +18,7 @@ consul::services:
     address: "%{::ipaddress_eth1}"
     checks:
       - script: "curl localhost:8080 >/dev/null 2>&1"
-        interval: 10s
+        interval: '10s'
     port: 8080
     tags:
       - "marathon"
