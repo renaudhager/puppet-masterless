@@ -9,19 +9,11 @@ class profiles::system::ca_cert (
   String $ca_cert_file_path = '/usr/share/ca-certificates/vault_ca_cert.crt',
   ) {
 
-  # file { '/usr/share/ca-certificates/extra':
-  #   ensure => directory,
-  #   owner  => 'root',
-  #   group  => 'root',
-  #   mode   => '0755',
-  # }
-
   file{ $ca_cert_file_path:
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
     content => file( $ca_cert_file ),
-    #require => File['/usr/share/ca-certificates/extra'],
     notify  => Exec['update-ca'],
   }
 
