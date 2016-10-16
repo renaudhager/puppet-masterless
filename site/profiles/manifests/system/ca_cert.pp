@@ -17,8 +17,14 @@ class profiles::system::ca_cert (
     notify  => Exec['update-ca'],
   }
 
+  exec { 'update-ca-conf':
+    command => "echo \"\$(basename ${ca_cert_file_path})\" >> /etc/ca-certificates.conf",
+    unless  => "grep \"\$(basename ${ca_cert_file_path})\" /etc/ca-certificates.conf",
+    notify  => Exec['update-ca'],
+  }
+
   exec { 'update-ca':
-    command     => "echo \"\$(basename ${ca_cert_file_path})\" >> /etc/ca-certificates.conf && /usr/sbin/update-ca-certificates",
+    command     => '/usr/sbin/update-ca-certificates',
     refreshonly => true,
   }
 
