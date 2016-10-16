@@ -1,6 +1,7 @@
 ---
 include:
   classes:
+    - profiles::system::ca_cert
     - profiles::system::packages
     - profiles::system::resources
     - profiles::system::sudo
