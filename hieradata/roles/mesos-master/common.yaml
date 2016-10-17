@@ -6,3 +6,4 @@ include:
     - zookeeper
     - profiles::marathon::install
     - vault
+    - profiles::vault::server::tls
