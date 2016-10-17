@@ -18,6 +18,8 @@ else {
   $role = hiera( 'role' )
 }
 
+$datacenter = hiera( 'datacenter' )
+
 node default {
   hiera_hash('include')['classes'].each |$c| { if $c !~ /^--/ and ! defined( Class[$c] ) { include $c } }
 }
