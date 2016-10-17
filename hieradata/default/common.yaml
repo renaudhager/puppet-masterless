@@ -6,6 +6,7 @@ include:
     - profiles::system::resources
     - profiles::system::sudo
     - profiles::puppet::node
+    - profiles::vault::utils
     - dnsmasq
     - consul
     - profiles::system::dnsmasq
