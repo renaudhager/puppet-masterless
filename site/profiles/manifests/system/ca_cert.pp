@@ -24,7 +24,7 @@ class profiles::system::ca_cert (
   }
 
   exec { 'update-ca':
-    command     => '/usr/sbin/update-ca-certificates',
+    command     => 'find /etc/ssl/certs -type l -maxdepth 1 -delete && /usr/sbin/update-ca-certificates',
     refreshonly => true,
   }
 
