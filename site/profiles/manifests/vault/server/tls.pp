@@ -38,10 +38,19 @@ class profiles::vault::server::tls (
     notify  => Exec['decrypt_tls_key'],
   }
 
+  file { $tls_key_file_path:
+    ensure  => 'present',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0600',
+    require => File['/etc/vault/ssl'],
+    notify  => Exec['decrypt_tls_key'],
+  }
+
   exec { 'decrypt_tls_key':
-    command => "/usr/local/bin/vault-decrypt.bash -f ${encrypted_key_file_path} -k ${encrytion_key_name} -o ${tls_key_file_path} -ti ${vault_token_id}",
-    unless  => "ls ${tls_key_file_path}",
-    require => File[$encrypted_key_file_path],
+    command     => "/usr/local/bin/vault-decrypt.bash -f ${encrypted_key_file_path} -k ${encrytion_key_name} -o ${tls_key_file_path} -ti ${vault_token_id}",
+    refreshonly => true,
+    require     => File[$encrypted_key_file_path],
   }
 
 }
