@@ -1,5 +1,5 @@
 ---
-mesos::master::cluster: '%{::datacenter}'
+mesos::master::cluster: '%{datacenter}'
 mesos::master::listen_address: '%{ipaddress_eth0}'
 mesos::master::options:
   quorum: '2'

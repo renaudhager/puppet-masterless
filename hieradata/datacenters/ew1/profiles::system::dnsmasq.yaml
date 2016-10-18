@@ -1,0 +1,9 @@
+---
+profiles::system::dnsmasq::upstream_server:
+  - 172.16.8.2
+profiles::system::dnsmasq::conf:
+  'consul':
+    content: |
+             # Enable forward lookup of the 'consul' domain:
+             server=/consul/127.0.0.1#8600
+             resolv-file=/etc/dnsmasq_resolv.conf

@@ -1,0 +1,2 @@
+---
+docker::extra_parameters: '--dns %{ipaddress_eth0} --dns-search service.consul'

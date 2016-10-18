@@ -1,0 +1,6 @@
+---
+include:
+  classes:
+    - nginx
+    - profiles::nginx::proxy
+    #- profiles::nginx::consul_template

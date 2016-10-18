@@ -1,21 +1,20 @@
 ---
-consul::version: '0.6.4'
 consul::config_hash:
     server: true
     bootstrap_expect: 3
-    datacenter: 'vgt'
+    datacenter: '%{::datacenter}'
     data_dir: '/var/consul'
     encrypt: 'X4SYOinf2pTAcAHRhpj7dA=='
     log_level: 'INFO'
     enable_syslog: true
-    bind_addr: "%{::ipaddress_eth1}"
+    bind_addr: '%{::ipaddress_eth0}'
     addresses:
       rpc: "127.0.0.1"
       http: "0.0.0.0"
 
 consul::services:
   marathon:
-    address: "%{::ipaddress_eth1}"
+    address: "%{::ipaddress_eth0}"
     checks:
       - script: "curl localhost:8080 >/dev/null 2>&1"
         interval: '10s'
@@ -23,7 +22,7 @@ consul::services:
     tags:
       - "marathon"
   zookeeper:
-    address: "%{::ipaddress_eth1}"
+    address: "%{::ipaddress_eth0}"
     port: 2181
     tags:
       - "zookeeper"

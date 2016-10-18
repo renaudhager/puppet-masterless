@@ -1,9 +1,9 @@
 ---
 profiles::puppetdb::vhosts::vhosts:
-  'puppetdb.service.consul':
+  'puppetdb.service.ew1.consul':
     #listen_port: '8081'
     proxy: 'http://localhost:8080'
-    listen_ip: "%{scope('::ipaddress_eth1')}"
+    listen_ip: "%{scope('::ipaddress_eth0')}"
     ssl: true
     ssl_cert: '/etc/puppetlabs/puppetdb/ssl/public.pem'
     ssl_key: '/etc/puppetlabs/puppetdb/ssl/private.pem'
