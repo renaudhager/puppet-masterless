@@ -18,7 +18,7 @@ class profiles::puppet::node (
   String $puppet_reports               = 'puppetdb',
   String $puppet_routes                = 'undef',
   String $puppet_pkg_version           = 'present',
-  String $puppet_hiera_config          = '/etc/puppetlabs/code/hiera.yaml'
+  String $puppet_hiera_config          = '/etc/puppetlabs/code/hiera.yaml',
 
 )  {
 
@@ -27,6 +27,15 @@ class profiles::puppet::node (
   }
 
   Ini_setting {
+    require => Package['puppet-agent'],
+  }
+
+  file { $puppet_hiera_config:
+    ensure  => 'present',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => file( 'profiles/puppet/node/hiera.yaml' ),
     require => Package['puppet-agent'],
   }
 
