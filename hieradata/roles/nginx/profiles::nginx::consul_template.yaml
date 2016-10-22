@@ -1,0 +1,8 @@
+---
+profiles::nginx::consul_template::instances:
+  'puppetboard':
+    template: '/etc/nginx/templates/puppetboard.ctmpl:/etc/nginx/sites-enabled/puppetboard.conf'
+    action: 'service nginx reload'
+  'webapp':
+    template: '/etc/nginx/templates/webapp.ctmpl:/etc/nginx/sites-enabled/webapp.conf'
+    action: 'service nginx reload'

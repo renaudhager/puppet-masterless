@@ -3,4 +3,4 @@ include:
   classes:
     - nginx
     - profiles::nginx::proxy
-    #- profiles::nginx::consul_template
+    - profiles::nginx::consul_template

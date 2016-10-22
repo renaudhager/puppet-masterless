@@ -3,6 +3,7 @@ profiles::nginx::proxy::templates:
   '/etc/nginx/templates/puppetboard.ctmpl':
     content: |
       upstream pupperboard_backend {
+       least_conn;
       {{range service "puppetboard"}}
        server {{.Address}}:{{.Port}};
       {{end}}
@@ -10,7 +11,7 @@ profiles::nginx::proxy::templates:
 
       server {
         listen *:80;
-        server_name           puppetboard.renorains.net;
+        server_name           puppetboard-lb.service.ew1.consul;
         client_max_body_size 256M;
 
         index  index.html index.htm index.php;
@@ -26,6 +27,67 @@ profiles::nginx::proxy::templates:
         location / {
 
           proxy_pass            http://pupperboard_backend;
+          proxy_read_timeout    1800;
+          proxy_connect_timeout 1800;
+          proxy_redirect        off;
+          proxy_set_header      Host $host;
+          proxy_set_header      X-Real-IP $remote_addr;
+          proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        server {
+          listen *:80;
+          server_name           puppetboard.renorains.net;
+          client_max_body_size 256M;
+
+          index  index.html index.htm index.php;
+
+          access_log            /var/log/nginx/puppetboard.renorains.net.access.log combined;
+          error_log             /var/log/nginx/puppetboard.renorains.net.error.log;
+
+          location /healthcheck {
+
+            return 200;
+          }
+
+          location / {
+
+            proxy_pass            http://pupperboard_backend;
+            proxy_read_timeout    1800;
+            proxy_connect_timeout 1800;
+            proxy_redirect        off;
+            proxy_set_header      Host $host;
+            proxy_set_header      X-Real-IP $remote_addr;
+            proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
+          }
+      }
+  '/etc/nginx/templates/webapp.ctmpl':
+    content: |
+      upstream webapp_backend {
+       least_conn;
+      {{range service "webapp"}}
+       server {{.Address}}:{{.Port}};
+      {{end}}
+      }
+
+      server {
+        listen *:80;
+        server_name           webapp-lb.service.ew1.consul;
+        client_max_body_size 256M;
+
+        index  index.html index.htm index.php;
+
+        access_log            /var/log/nginx/webapp.access.log combined;
+        error_log             /var/log/nginx/webapp.error.log;
+
+        location /healthcheck {
+
+          return 200;
+        }
+
+        location / {
+
+          proxy_pass            http://webapp_backend;
           proxy_read_timeout    1800;
           proxy_connect_timeout 1800;
           proxy_redirect        off;

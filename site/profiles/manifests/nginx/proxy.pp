@@ -2,6 +2,7 @@
 #
 # This class manage consul template for nginx.
 #
+# TODO: Use nginx classe to create nginx conf file.
 
 class profiles::nginx::proxy (
   Hash $templates      = {},
@@ -16,10 +17,11 @@ class profiles::nginx::proxy (
     }
 
     $templates_default = {
-      ensure => 'present',
-      owner  => 'root',
-      group  => 'root',
-      mode   => '0644',
+      ensure  => 'present',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      require => File[$template_dir],
     }
 
     create_resources( file, $templates, $templates_default )
