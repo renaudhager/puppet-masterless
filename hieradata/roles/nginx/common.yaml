@@ -4,3 +4,4 @@ include:
     - nginx
     - profiles::nginx::proxy
     - profiles::nginx::consul_template
+    - profiles::httpauth
