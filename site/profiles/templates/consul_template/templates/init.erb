@@ -10,7 +10,7 @@ setgid <%= @group %>
 
 exec $CONSUL_TEMPLATE \
   -consul <%= @consul_url %> \
-  -template "<%= @template_src %>/<%= @name %>.ctmpl:<%= @template_dst %>/<%= @name %>.conf:<%= @instance['action'] %>" \
+  -template "<%= @template_dir %>/<%= @name %>.ctmpl:<%= @template_dst %>/<%= @name %>.conf:<%= @instance['action'] %>" \
   -syslog \
   -retry 15s
 
