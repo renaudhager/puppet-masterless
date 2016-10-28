@@ -2,6 +2,6 @@
 include:
   classes:
     - nginx
-    - profiles::nginx::proxy
-    - profiles::nginx::consul_template
+    - profiles::consul_template::install
+    - profiles::consul_template::templates
     - profiles::httpauth

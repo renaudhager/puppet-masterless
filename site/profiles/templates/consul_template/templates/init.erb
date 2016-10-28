@@ -10,9 +10,9 @@ setgid <%= @group %>
 
 exec $CONSUL_TEMPLATE \
   -consul <%= @consul_url %> \
-  -template "<%= @instance['template'] %>:<%= @instance['action'] %>" \
+  -template "<%= @template_src %>/<%= @name %>.ctmpl:<%= @template_dst %>/<%= @name %>.conf:<%= @instance['action'] %>" \
   -syslog \
-  -retry 30s
+  -retry 15s
 
 respawn
 respawn limit 10 10
