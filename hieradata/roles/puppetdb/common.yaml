@@ -2,5 +2,6 @@
 include:
   classes:
     - puppetdb::server
+    - profiles::puppetdb::db
     - nginx
     - profiles::puppetdb::vhosts
