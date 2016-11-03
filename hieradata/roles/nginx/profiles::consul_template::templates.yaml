@@ -171,3 +171,75 @@ profiles::consul_template::templates::instances:
           proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
         }
       }
+  'puppetdb':
+    action: 'service nginx reload'
+    content: |
+      upstream puppetdb_backend {
+       least_conn;
+      {{range service "puppetdb"}}
+       server {{.Address}}:{{.Port}};
+      {{end}}
+      }
+
+      server {
+        listen *:80;
+        server_name           puppetdb-lb.service.ew1.consul;
+        client_max_body_size 256M;
+
+        index  index.html index.htm index.php;
+
+        access_log            /var/log/nginx/puppetdb.access.log combined;
+        error_log             /var/log/nginx/puppetdb.error.log;
+
+        location /healthcheck {
+
+          return 200;
+        }
+
+        location / {
+
+          proxy_pass            https://puppetdb_backend;
+          proxy_read_timeout    1800;
+          proxy_connect_timeout 1800;
+          proxy_redirect        off;
+          proxy_set_header      Host $host;
+          proxy_set_header      X-Real-IP $remote_addr;
+          proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+      }
+      server {
+        listen *:8081 ssl;
+        server_name           puppetdb-lb.service.ew1.consul;
+        client_max_body_size 256M;
+
+        ssl on;
+        ssl_certificate           /etc/nginx/ssl/puppetdb-lb.service.ew1.consul.cert;
+        ssl_certificate_key       /etc/nginx/ssl/puppetdb-lb.service.ew1.consul.key;
+        ssl_session_cache         shared:SSL:10m;
+        ssl_session_timeout       5m;
+        ssl_protocols             TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers               ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA;
+        ssl_prefer_server_ciphers on;
+
+        index  index.html index.htm index.php;
+
+        access_log            /var/log/nginx/puppetdb-ssl.access.log combined;
+        error_log             /var/log/nginx/puppetdb-ssl.error.log;
+
+        location /healthcheck {
+
+          return 200;
+        }
+
+        location / {
+          auth_basic "Restricted Content";
+          auth_basic_user_file /etc/nginx/htpasswd;
+          proxy_pass            https://puppetdb_backend;
+          proxy_read_timeout    1800;
+          proxy_connect_timeout 1800;
+          proxy_redirect        off;
+          proxy_set_header      Host $host;
+          proxy_set_header      X-Real-IP $remote_addr;
+          proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+      }

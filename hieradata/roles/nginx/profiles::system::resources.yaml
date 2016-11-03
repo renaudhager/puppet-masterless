@@ -1,0 +1,67 @@
+---
+profiles::system::resources::files:
+  # Setup SSL CERT for puppetdb-lb setvice
+  '/etc/nginx/ssl':
+    ensure: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    require: 'Package[nginx]'
+  '/etc/nginx/ssl/puppetdb-lb.service.ew1.consul.key':
+    owner: 'root'
+    group: 'root'
+    mode: '0600'
+    require: 'File[/etc/nginx/ssl]'
+    content: |
+      -----BEGIN RSA PRIVATE KEY-----
+      MIIEpAIBAAKCAQEArsqiOqIKTBG+BJjU89Mk+Crnnq39ijqOtivZ0kVSkGJxfMh3
+      qjk3HV3JxuU+FBCaaYjC4GMo01/+c4W85MeKMGtbNzB8vt4tzF0zTk+pWMoVLe9U
+      +ECtNtC2xmtdTd8wnNZoaSQetnvU1qIJ7tELhdNCBCPINahzRLQe8O+39Gf8TsMR
+      SeW0WNRs+XKKFzz68UaR1tSWmuFixmpUDclP6ttMOOr+XUFeeVxfoLWvAm6ov7Vs
+      TGRvshTloDSmvxjn/8XvIf3h485KlPRZs7tNxfwUoUzWtyzrltmIlRPTO4v1ZRV3
+      ikoF2V9rJuJKIm/bDfJjdmI3kxbq6mSgWYqUawIDAQABAoIBAFTJOjRS0cfge1nj
+      gLjdXPt8ZGoWX/wjN4KqdriGo+whtIcg/tr1cgSur+fo31oAS8aRbmZF81HFKLqE
+      zwHywNeH2/FDdd9oCrMtKmv8PFsze16Sz5a0WNFUILTS86mIcB5D6tXFjZhbLP0I
+      EOVlRb+eoFE9wio1EeTrsm6Q+Zx13uW2U7JKNZ5rcZcOlTllueoswXr7se1fEe70
+      hWwlc8juJXrm2U1ITojVErmVjM9LRtfF7TKDYZzZQ/F4gd1qdsGe1zxdwNcK+yt1
+      WfmmMc7FQmhkzQ102jHmfVjM5i0p+/Bv1eQgn286qhsKPzaOet2AZpEjNO39oQQy
+      t0grsvECgYEA36VMJvWlJu9Q9KkIwd/e51GkSjgxAoJaAYBBj6EVDNyyqD2kkDqx
+      wVt0pCliZfIvDucA4VVhZetTgqXE9VMSNr/OmtKx+5AR2rvnv87dcshFDNPxblbc
+      Lhxe4aP1rK1gHxYUD8r8xHFIUD8FgFRsT6NqA0y+pB/Fid8L9dMUG3cCgYEAyBQG
+      qdZCESrzUu3DsqrB0yMdihcJIjhQPVuwW6r2Mv6uhhz3MEWgURrZKQMB/y4LFEYG
+      RXs8JeEESIbbtAP/L4zPRIAWuaCcKM1WEFPE4T+YQlVDZgnw+n8xS/dt4cy1VrMn
+      Cqga/j8+07yuJOh+e+gQ/+sy8sU6GSZftV+TY60CgYEAoFY4j2HjIlPGnXEmRyCC
+      BSMh/tfkQyFC9/qEhj19Avii2T1AYurBj5dKu3q0AdSsaimxFtuIdXJOL8c6uorw
+      7vF6ZMMTOQBj3IaEsp3TY7wyzOySFYIOXryWRXyv4Dl4RTEl9uCXcRqqNmXIQuXD
+      tSC6G12E+9OPYrXXNEk9DCcCgYARoKINqJDdjlktv0D0ptK41Wku12S4nRmErmVV
+      TjSuvX2G11p36Ep9ms3zLQ6p+taDDMBUsszT0YVdFnSY4ZlECTXhpR9bb2kStzST
+      761y4vV5MqXjgZC3oSkotj36HN0FLHeOGs12BQB2CzOUkN9D72hAA+rTNMkvmg/o
+      nOkRaQKBgQDO+vwRIhMyF34r/09iQapXOb8PyzX+PlRlq16Jfket0MuCVJW1Dks+
+      MnNIm05lkHukJ8V0K8CauuW/1TzCZW3w0V/z58JwdJXIsEmdMlzZQ+wv4+0Kw2Cu
+      TXicNqqL9cCH7mMxNj5c3nYN0AwJOEXu00HMW46MTX0dUsswCl3Sjw==
+      -----END RSA PRIVATE KEY-----
+  '/etc/nginx/ssl/puppetdb-lb.service.ew1.consul.cert':
+    owner: 'root'
+    group: 'root'
+    mode: '0600'
+    require: 'File[/etc/nginx/ssl]'
+    content: |
+      -----BEGIN CERTIFICATE-----
+      MIIDHjCCAgYCCQDaxuj68rEdjjANBgkqhkiG9w0BAQsFADBRMQswCQYDVQQGEwJV
+      SzEPMA0GA1UECAwGTG9uZG9uMQ8wDQYDVQQHDAZMb25kb24xEzARBgNVBAoMCk15
+      IENvbXBhbnkxCzAJBgNVBAsMAklUMB4XDTE2MTAwNjIzNTkxOVoXDTE5MDcyNzIz
+      NTkxOVowUTELMAkGA1UEBhMCVUsxDzANBgNVBAgMBkxvbmRvbjEPMA0GA1UEBwwG
+      TG9uZG9uMRMwEQYDVQQKDApNeSBDb21wYW55MQswCQYDVQQLDAJJVDCCASIwDQYJ
+      KoZIhvcNAQEBBQADggEPADCCAQoCggEBAK7KojqiCkwRvgSY1PPTJPgq556t/Yo6
+      jrYr2dJFUpBicXzId6o5Nx1dycblPhQQmmmIwuBjKNNf/nOFvOTHijBrWzcwfL7e
+      LcxdM05PqVjKFS3vVPhArTbQtsZrXU3fMJzWaGkkHrZ71NaiCe7RC4XTQgQjyDWo
+      c0S0HvDvt/Rn/E7DEUnltFjUbPlyihc8+vFGkdbUlprhYsZqVA3JT+rbTDjq/l1B
+      XnlcX6C1rwJuqL+1bExkb7IU5aA0pr8Y5//F7yH94ePOSpT0WbO7TcX8FKFM1rcs
+      65bZiJUT0zuL9WUVd4pKBdlfaybiSiJv2w3yY3ZiN5MW6upkoFmKlGsCAwEAATAN
+      BgkqhkiG9w0BAQsFAAOCAQEAUQOMOjFLumRA92GQ/7CZN9JTthm/JlU7w27Gbqfm
+      he9f7zIr3Nf5P+WA3W0cB4YZC6kbygo/EkIpe7d3/HR+T3Vr48Ev8QHNXLuMSOim
+      GS/WOKRZDNWacRbjmYNlTnaBVZ0OandNkj63hyXTM1G69Kvi8rcZFk2TeyJaFXIj
+      Bxj1E7NKMbrvWgEqJg+6er/vadsQ6hdUkrD0GyrsoBWnzIcR+ar1CAGIjOeUATr/
+      vIFDjS9yd448I7oe+9LaCmy7cy5CLKBwnnB/MM+tCdhAOqT/hWZueJCls2u/ZXPO
+      Bz0EdmBGkDoEcxTzo8rZzaTBqo7INREwU++aJNL0NYSEiw==
+      -----END CERTIFICATE-----

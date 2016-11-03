@@ -8,11 +8,19 @@ consul::services:
     port: 80
     tags:
       - "puppetboard-lb"
-  webapp-lb:
+  puppetdb-lb:
     address: "%{::ipaddress_eth0}"
     checks:
       - script: "curl localhost:80/healthcheck >/dev/null 2>&1"
         interval: '10s'
     port: 80
+    tags:
+      - "puppetdb-lb"
+  webapp-lb:
+    address: "%{::ipaddress_eth0}"
+    checks:
+      - script: "curl https://localhost:8081/healthcheck >/dev/null 2>&1"
+        interval: '10s'
+    port: 8081
     tags:
       - "webapp-lb"
