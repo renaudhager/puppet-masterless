@@ -12,9 +12,6 @@ profiles::system::resources::users:
     comment: 'Renaud'
     uid: '1981'
     home: '/home/renaud'
-  'test':
-    uid: '1982'
-    home: '/home/test'
 profiles::system::resources::sshkeys:
   'renaud@renaud':
     user: renaud
