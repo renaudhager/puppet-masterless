@@ -1,19 +1,19 @@
 ---
-puppetdb::database_host: 'localhost'
-puppetdb::database_name: 'puppetdb'
-puppetdb::database_password: 'puppetdb'
-puppetdb::database_port: '5432'
-puppetdb::database_username: 'puppetdb'
-puppetdb::listen_address: 'localhost'
-puppetdb::ssl_listen_address: '127.0.0.1'
-puppetdb::store_usage: '5120'
-puppetdb::temp_usage: '5120'
-puppetdb::java_args:
+puppetdb::server::database_host: 'ew1-util-puppetdb-db01.c4pmb4tgjtop.eu-west-1.rds.amazonaws.com'
+puppetdb::server::database_name: 'puppetdb'
+puppetdb::server::database_password: 'dbpuppet'
+puppetdb::server::database_port: '5432'
+puppetdb::server::database_username: 'puppetdb'
+puppetdb::server::listen_address: 'localhost'
+puppetdb::server::ssl_listen_address: '127.0.0.1'
+puppetdb::server::store_usage: '5120'
+puppetdb::server::temp_usage: '5120'
+puppetdb::server::java_args:
   '-Xmx': 512M
   '-Xms': 512M
-puppetdb::ssl_deploy_certs: true
-puppetdb::ssl_set_cert_paths: true
-puppetdb::ssl_key: |
+puppetdb::server::ssl_deploy_certs: true
+puppetdb::server::ssl_set_cert_paths: true
+puppetdb::server::ssl_key: |
   -----BEGIN RSA PRIVATE KEY-----
   MIIEpAIBAAKCAQEArsqiOqIKTBG+BJjU89Mk+Crnnq39ijqOtivZ0kVSkGJxfMh3
   qjk3HV3JxuU+FBCaaYjC4GMo01/+c4W85MeKMGtbNzB8vt4tzF0zTk+pWMoVLe9U
@@ -41,7 +41,7 @@ puppetdb::ssl_key: |
   MnNIm05lkHukJ8V0K8CauuW/1TzCZW3w0V/z58JwdJXIsEmdMlzZQ+wv4+0Kw2Cu
   TXicNqqL9cCH7mMxNj5c3nYN0AwJOEXu00HMW46MTX0dUsswCl3Sjw==
   -----END RSA PRIVATE KEY-----
-puppetdb::ssl_cert: |
+puppetdb::server::ssl_cert: |
   -----BEGIN CERTIFICATE-----
   MIIDHjCCAgYCCQDaxuj68rEdjjANBgkqhkiG9w0BAQsFADBRMQswCQYDVQQGEwJV
   SzEPMA0GA1UECAwGTG9uZG9uMQ8wDQYDVQQHDAZMb25kb24xEzARBgNVBAoMCk15
@@ -61,7 +61,7 @@ puppetdb::ssl_cert: |
   vIFDjS9yd448I7oe+9LaCmy7cy5CLKBwnnB/MM+tCdhAOqT/hWZueJCls2u/ZXPO
   Bz0EdmBGkDoEcxTzo8rZzaTBqo7INREwU++aJNL0NYSEiw==
   -----END CERTIFICATE-----
-puppetdb::ssl_ca_cert: |
+puppetdb::server::ssl_ca_cert: |
   -----BEGIN CERTIFICATE-----
   MIIDdTCCAl2gAwIBAgIJAMkchD7eYlgYMA0GCSqGSIb3DQEBCwUAMFExCzAJBgNV
   BAYTAlVLMQ8wDQYDVQQIDAZMb25kb24xDzANBgNVBAcMBkxvbmRvbjETMBEGA1UE

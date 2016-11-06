@@ -1,0 +1,4 @@
+---
+include:
+  classes:
+    - profiles::system::dhclient

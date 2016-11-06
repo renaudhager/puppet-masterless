@@ -1,8 +1,8 @@
 ---
 include:
   classes:
-    - puppetdb
-    - puppetdb::database::postgresql
     - puppetdb::server
+    - puppetdb::globals
+    - profiles::puppetdb::db
     - nginx
     - profiles::puppetdb::vhosts

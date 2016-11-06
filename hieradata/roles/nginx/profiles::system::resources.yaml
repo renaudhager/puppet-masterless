@@ -1,0 +1,26 @@
+---
+profiles::system::resources::files:
+  # Setup SSL CERT for puppetdb-lb setvice
+  '/etc/nginx/ssl':
+    ensure: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    require: 'Package[nginx]'
+  '/etc/nginx/ssl/puppetdb-lb.service.ew1.consul.key':
+    ensure: 'present'
+    owner: 'root'
+    group: 'root'
+    mode: '0600'
+    require: 'File[/etc/nginx/ssl]'
+    source: 'puppet:///modules/profiles/certs/puppetdb-lb.service.ew1.consul.key'
+    notify: 'Service[nginx]'
+
+  '/etc/nginx/ssl/puppetdb-lb.service.ew1.consul.cert':
+    ensure: 'present'
+    owner: 'root'
+    group: 'root'
+    mode: '0600'
+    require: 'File[/etc/nginx/ssl]'
+    source: 'puppet:///modules/profiles/certs/puppetdb-lb.service.ew1.consul.cert'
+    notify: 'Service[nginx]'

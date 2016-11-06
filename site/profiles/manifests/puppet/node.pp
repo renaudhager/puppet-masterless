@@ -30,13 +30,42 @@ class profiles::puppet::node (
     require => Package['puppet-agent'],
   }
 
+  File {
+    require => Package['puppet-agent'],
+  }
   file { $puppet_hiera_config:
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
     content => file( 'profiles/puppet/node/hiera.yaml' ),
-    require => Package['puppet-agent'],
+  }
+
+  file { '/usr/local/bin/gem':
+    ensure => 'link',
+    target => '/opt/puppetlabs/puppet/bin/gem',
+  }
+
+  file { '/usr/local/bin/puppet_wrapper.bash':
+    ensure  => 'present',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0744',
+    content => file( 'profiles/puppet/node/puppet_wrapper.bash' ),
+  }
+
+  # Todo : clean this
+  $interval = fqdn_rand(20)
+  $min2 = 20 + $interval
+  $min3 = 40 + $interval
+
+  # Setup cronjob to renew tokens
+  cron { 'puppet-run':
+    ensure      => 'present',
+    command     => '/usr/local/bin/puppet_wrapper.bash',
+    user        => 'root',
+    minute      => [$interval, $min2, $min3],
+    environment => 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin'
   }
 
   if $puppet_routes != 'undef' {
@@ -107,6 +136,14 @@ class profiles::puppet::node (
     section => 'main',
     setting => 'reports',
     value   => $puppet_reports,
+  }
+
+  ini_setting { 'puppet_environment':
+    ensure  => present,
+    path    => $puppet_conf_file,
+    section => 'main',
+    setting => 'environment',
+    value   => $::environment,
   }
 
   ini_setting { 'puppet_hiera_config':

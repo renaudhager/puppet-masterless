@@ -1,0 +1,6 @@
+---
+zookeeper::servers:
+  1: 'ew1-util-compute-ma01.node.ew1.consul'
+  2: 'ew1-util-compute-ma02.node.ew1.consul'
+  3: 'ew1-util-compute-ma03.node.ew1.consul'
+zookeeper::client_ip: '%{::ipaddress_eth0}'

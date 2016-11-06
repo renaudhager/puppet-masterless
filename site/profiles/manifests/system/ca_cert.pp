@@ -10,6 +10,7 @@ class profiles::system::ca_cert (
   ) {
 
   file{ $ca_cert_file_path:
+    ensure  => 'present',
     owner   => 'root',
     group   => 'root',
     mode    => '0644',

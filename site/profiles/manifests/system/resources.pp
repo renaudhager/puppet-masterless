@@ -9,12 +9,12 @@ class profiles::system::resources (
   $user_manage_home    = true,
 ) {
   # DeepMerge bug, we have to set this here
-  $users         = hiera_hash( 'profiles::resources::users', {} )
-  $deleted_users = hiera_hash( 'profiles::resources::deleted_users', {} )
-  $groups        = hiera_hash( 'profiles::resources::groups', {} )
-  $files         = hiera_hash( 'profiles::resources::files', {} )
-  $crons         = hiera_hash( 'profiles::resources::crons', {} )
-  $sshkeys       = hiera_hash( 'profiles::resources::sshkeys', {} )
+  $users         = hiera_hash( 'profiles::system::resources::users', {} )
+  $deleted_users = hiera_hash( 'profiles::system::resources::deleted_users', {} )
+  $groups        = hiera_hash( 'profiles::system::resources::groups', {} )
+  $files         = hiera_hash( 'profiles::system::resources::files', {} )
+  $crons         = hiera_hash( 'profiles::system::resources::crons', {} )
+  $sshkeys       = hiera_hash( 'profiles::system::resources::sshkeys', {} )
 
   validate_hash( $users )
   validate_hash( $deleted_users )
