@@ -1,6 +1,6 @@
 ---
 profiles::puppet::node::puppet_pkg_version: '1.7.0-1trusty'
-profiles::puppet::node::puppetdb_url: "https://puppetdb.service.%{::datacenter}.consul:8081"
+profiles::puppet::node::puppetdb_url: "https://puppetdb-lb.service.%{::datacenter}.consul:8081"
 profiles::puppet::node::puppet_routes: |
   apply:
     catalog:

@@ -232,8 +232,6 @@ profiles::consul_template::templates::instances:
         }
 
         location / {
-          auth_basic "Restricted Content";
-          auth_basic_user_file /etc/nginx/htpasswd;
           proxy_pass            https://puppetdb_backend;
           proxy_read_timeout    1800;
           proxy_connect_timeout 1800;
