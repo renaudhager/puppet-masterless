@@ -7,8 +7,10 @@ profiles::system::packages::packages:
   molly-guard: {}
   iotop: {}
   ioping: {}
-  tree: {}
   pigz: {}
   pbzip2: {}
   zip: {}
   unzip: {}
+  tree: {}
+  git: {}
+  jq: {}
