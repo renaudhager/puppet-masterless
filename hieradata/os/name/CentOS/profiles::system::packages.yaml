@@ -1,17 +1,16 @@
 ---
 profiles::system::packages::packages:
   htop: {}
-  nmon: {}
   dstat: {}
   lsscsi: {}
-  molly-guard: {}
   iotop: {}
   ioping: {}
   tree: {}
-  pigz: {}
-  pbzip2: {}
   zip: {}
   unzip: {}
   git: {}
+  epel-release: {}
+  pigz: {}
+  pbzip2: {}
   jq: {}
   puppetdb-termini: {}

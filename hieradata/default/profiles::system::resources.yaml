@@ -7,12 +7,12 @@ profiles::system::resources::files:
     group: 'consul'
     mode: '0755'
     require: 'User[consul]'
-profiles::resources::users:
+profiles::system::resources::users:
   'renaud':
     comment: 'Renaud'
     uid: '1981'
     home: '/home/renaud'
-profiles::resources::sshkeys:
+profiles::system::resources::sshkeys:
   'renaud@renaud':
     user: renaud
     type: 'ssh-rsa'

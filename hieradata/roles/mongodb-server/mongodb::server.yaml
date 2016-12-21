@@ -1,0 +1,13 @@
+---
+mongodb::server::auth: false
+# mongodb::server::package_name: 'mongodb-org-server'
+# mongodb::server::package_ensure: '3.4.1'
+mongodb::server::dbpath_fix: false
+mongodb::server::user: 'mongodb'
+mongodb::server::group: 'mongodb'
+# mongodb::server::store_creds: true
+# mongodb::server::create_admin: true
+# mongodb::server::admin_password: 'admin'
+mongodb::server::bind_ip:
+  - '%{::ipaddress_eth1}'
+  - '127.0.0.1'

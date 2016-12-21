@@ -9,12 +9,13 @@ class profiles::system::resources (
   $user_manage_home    = true,
 ) {
   # DeepMerge bug, we have to set this here
-  $users         = hiera_hash( 'profiles::resources::users', {} )
-  $deleted_users = hiera_hash( 'profiles::resources::deleted_users', {} )
-  $groups        = hiera_hash( 'profiles::resources::groups', {} )
-  $files         = hiera_hash( 'profiles::resources::files', {} )
-  $crons         = hiera_hash( 'profiles::resources::crons', {} )
-  $sshkeys       = hiera_hash( 'profiles::resources::sshkeys', {} )
+  $users         = hiera_hash( 'profiles::system::resources::users', {} )
+  $deleted_users = hiera_hash( 'profiles::system::resources::deleted_users', {} )
+  $groups        = hiera_hash( 'profiles::system::resources::groups', {} )
+  $files         = hiera_hash( 'profiles::system::resources::files', {} )
+  $crons         = hiera_hash( 'profiles::system::resources::crons', {} )
+  $sshkeys       = hiera_hash( 'profiles::system::resources::sshkeys', {} )
+  $yumrepos      = hiera_hash( 'profiles::system::resources::yumrepos', {} )
 
   validate_hash( $users )
   validate_hash( $deleted_users )
@@ -42,12 +43,19 @@ class profiles::system::resources (
     user   => 'root',
   }
 
+  $yumrepos_defaults = {
+    ensure   => 'present',
+    enabled  => 1,
+    gpgcheck => 1,
+  }
+
   create_resources( user, $users, $user_defaults )
   create_resources( group, $groups, $defaults )
   create_resources( file, $files, $defaults )
   create_resources( cron, $crons, $cron_defaults )
   create_resources( ssh_authorized_key, $sshkeys, $defaults )
   create_resources( profiles::deleted_user, $deleted_users )
+  create_resources( yumrepo, $yumrepos, $yumrepos_defaults )
 
   # Delete the users before we create the new ones
   #Profiles::Deleted_user <||> -> User <| ensure == present |>

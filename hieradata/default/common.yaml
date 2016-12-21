@@ -1,13 +1,13 @@
 ---
 include:
   classes:
-    - profiles::system::ca_cert
+    #- profiles::system::ca_cert
     - profiles::system::packages
     - profiles::system::resources
     - profiles::system::sudo
     - profiles::puppet::node
     - profiles::puppet::facts
-    - profiles::vault::utils
+    #- profiles::vault::utils
     - dnsmasq
     - consul
     - profiles::system::dnsmasq

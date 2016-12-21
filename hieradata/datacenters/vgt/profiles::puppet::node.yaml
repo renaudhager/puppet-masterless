@@ -1,9 +1,10 @@
 ---
+profiles::puppet::node::puppet_report: false
 profiles::puppet::node::puppet_routes: |
   apply:
     catalog:
       terminus: compiler
-      cache: puppetdb
+      #cache: puppetdb
     facts:
       terminus: facter
-      cache: puppetdb_apply
+      #cache: puppetdb_apply

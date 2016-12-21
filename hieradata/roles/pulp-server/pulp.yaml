@@ -1,0 +1,4 @@
+---
+pulp::manage_db: false
+pulp::db_name: 'pulp'
+pulp::db_seeds: 'pulp-db01.vgt.lan:27017'

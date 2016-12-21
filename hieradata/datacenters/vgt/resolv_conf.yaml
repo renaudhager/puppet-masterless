@@ -1,6 +1,6 @@
 ---
 resolv_conf::nameservers:
-  - localhost
+  - 10.0.2.3
 resolv_conf::searchpath:
   - node.vgt.consul
   - node.consul

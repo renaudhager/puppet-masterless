@@ -1,0 +1,4 @@
+---
+profiles::system::packages::packages:
+  compat-qpid-cpp-client:
+    ensure: 'absent'

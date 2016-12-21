@@ -1,0 +1,6 @@
+---
+include:
+  classes:
+    #- profiles::pulp::installation_repo
+    - pulp
+    - profiles::system::resources

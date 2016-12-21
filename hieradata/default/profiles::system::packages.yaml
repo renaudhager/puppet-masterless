@@ -1,9 +1,4 @@
 ---
 profiles::system::packages::packages:
-  dstat: {}
-  tree: {}
-  git: {}
-  jq: {}
-  puppetdb-termini: {}
   r10k:
-    provider: 'gem'
+    provider: 'puppet_gem'

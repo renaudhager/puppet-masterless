@@ -1,0 +1,12 @@
+---
+hosts::purge_hosts: false
+hosts::host_entries:
+  'pulp-db01.vgt.lan':
+    ip: '172.16.10.9'
+    host_aliases:
+      - 'mongodb'
+      - 'pulp-db01'
+  'pulp-rm.vgt.lan':
+    ip: '172.16.10.11'
+    host_aliases:
+      - 'pulp-rm'
