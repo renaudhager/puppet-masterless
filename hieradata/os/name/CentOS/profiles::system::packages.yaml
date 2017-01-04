@@ -14,3 +14,4 @@ profiles::system::packages::packages:
   pbzip2: {}
   jq: {}
   puppetdb-termini: {}
+  net-tools: {}

@@ -7,7 +7,7 @@ profiles::system::resources::yumrepos:
     gpgcheck: 1
     gpgkey: 'https://repos.fedorapeople.org/repos/pulp/pulp/GPG-RPM-KEY-pulp-2'
   'group_qpid-qpid':
-    baseurl: 'https://copr-be.cloud.fedoraproject.org/results/@qpid/qpid/epel-7-$basearch/'
+    baseurl: 'https://copr-be.cloud.fedoraproject.org/results/@qpid/qpid/epel-6-$basearch/'
     descr: 'qpid repo'
     enabled: 0
     gpgcheck: 1

@@ -1,6 +1,7 @@
 forge 'http://forge.puppet.com'
 
 ## Modules from the Puppet Forge
+mod 'derdanne-nfs',          '1.0.2'
 mod 'deric/mesos',           '0.8.2'
 mod 'deric/zookeeper',       '0.6.1'
 mod 'garethr/docker',        '5.3.0'
@@ -27,3 +28,4 @@ mod 'saz/dnsmasq',           '1.2.0'
 mod 'saz/resolv_conf',       '3.0.5'
 mod 'zack/r10k',             '3.2.0'
 mod 'saz/sudo',              '3.1.0'
+mod 'spiette-selinux',       '0.5.4'

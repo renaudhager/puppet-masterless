@@ -1,0 +1,2 @@
+---
+nfs::server_enabled: true

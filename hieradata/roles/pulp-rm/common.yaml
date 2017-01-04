@@ -1,6 +1,8 @@
 ---
 include:
   classes:
-    #- profiles::pulp::installation_repo
     - pulp
+    - pulp::admin
+    - nfs
+    - profiles::system::nfs_exports
     - profiles::system::resources

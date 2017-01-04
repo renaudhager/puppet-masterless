@@ -10,3 +10,4 @@ hosts::host_entries:
     ip: '172.16.10.11'
     host_aliases:
       - 'pulp-rm'
+      - 'pulp-rm.node.vgt.consul'

@@ -1,0 +1,11 @@
+---
+profiles::system::nfs_mounts::mounts:
+  '/etc/pulp':
+    server: 'pulp-rm.vgt.lan'
+    share: '/etc/pulp'
+  '/var/lib/pulp':
+    server: 'pulp-rm.vgt.lan'
+    share: '/var/lib/pulp'
+  '/etc/pki/pulp':
+    server: 'pulp-rm.vgt.lan'
+    share: '/etc/pki/pulp'

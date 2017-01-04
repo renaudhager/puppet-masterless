@@ -1,0 +1,6 @@
+---
+include:
+  classes:
+    - nfs
+    - profiles::system::nfs_mounts
+    - profiles::system::resources

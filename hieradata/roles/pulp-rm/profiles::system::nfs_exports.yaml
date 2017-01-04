@@ -1,0 +1,11 @@
+---
+profiles::system::nfs_exports::exports:
+  '/etc/pulp':
+    ensure: 'mounted'
+    clients: '172.16.10.0/24(rw,insecure,async,root_squash)'
+  '/etc/pki/pulp':
+    ensure: 'mounted'
+    clients: '172.16.10.0/24(rw,insecure,async,root_squash)'
+  '/var/lib/pulp':
+    ensure: 'mounted'
+    clients: '172.16.10.0/24(rw,insecure,async,root_squash)'
