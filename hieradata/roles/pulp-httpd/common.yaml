@@ -1,6 +1,12 @@
 ---
 include:
   classes:
+    - apache
+    - apache::mod::proxy
+    - apache::mod::wsgi
+    - apache::mod::ssl
+    - apache::mod::xsendfile
+    - mongodb::client
     - nfs
+    - profiles::pulp::httpd
     - profiles::system::nfs_mounts
-    - profiles::system::resources

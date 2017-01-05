@@ -1,0 +1,9 @@
+---
+profiles::pulp::rpm_repos::repos:
+  'foreman':
+    feed: 'http://yum.theforeman.org/plugins/1.13/el7/x86_64/'
+  'ceph':
+    feed: 'https://download.ceph.com/rpm/el7/x86_64/'
+  'sensu':
+    feed: 'http://sensu.global.ssl.fastly.net/yum/x86_64/'
+    relative_url: 'toto'

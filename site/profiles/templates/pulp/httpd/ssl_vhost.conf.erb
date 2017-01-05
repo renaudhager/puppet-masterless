@@ -1,0 +1,11 @@
+# allow older yum clients to connect, see bz 647828
+  SSLInsecureRenegotiation On
+
+  KeepAlive On
+  MaxKeepAliveRequests <%= scope['max_keep_alive'] %>
+
+<% if scope['ssl_username'] and !scope['ssl_username'].empty? -%>
+  <Location /pulp/api>
+    SSLUsername <%= scope['ssl_username'] %>
+  </Location>
+<%- end -%>

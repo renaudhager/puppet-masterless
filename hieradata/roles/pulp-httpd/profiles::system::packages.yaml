@@ -1,0 +1,4 @@
+---
+profiles::system::packages::packages:
+  pulp-server: {}
+  pulp-rpm-plugins: {}

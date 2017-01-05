@@ -5,4 +5,4 @@ include:
     - pulp::admin
     - nfs
     - profiles::system::nfs_exports
-    - profiles::system::resources
+    - profiles::pulp::rpm_repos
