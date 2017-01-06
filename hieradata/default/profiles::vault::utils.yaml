@@ -1,0 +1,2 @@
+---
+profiles::vault::utils::vault_url: 'https://active.vault.service.%{::datacenter}.consul:8200'

@@ -1,0 +1,6 @@
+---
+mesos::repo: 'mesosphere'
+mesos::zookeeper:
+  - 'ew1-util-compute-ma01.node.ew1.consul:2181'
+  - 'ew1-util-compute-ma02.node.ew1.consul:2181'
+  - 'ew1-util-compute-ma03.node.ew1.consul:2181'

@@ -15,3 +15,17 @@ consul::config_hash:
       - 172.16.10.11
       - 172.16.10.12
       - 172.16.10.13
+consul::services:
+  marathon:
+    address: "%{::ipaddress_eth1}"
+    checks:
+      - script: "curl localhost:8080 >/dev/null 2>&1"
+        interval: '10s'
+    port: 8080
+    tags:
+      - "marathon"
+  zookeeper:
+    address: "%{::ipaddress_eth1}"
+    port: 2181
+    tags:
+      - "zookeeper"

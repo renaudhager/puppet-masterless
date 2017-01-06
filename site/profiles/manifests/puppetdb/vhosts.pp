@@ -7,9 +7,7 @@
 #
 
 class profiles::puppetdb::vhosts (
-  Hash $vhosts         = {},
-  String $cert_content = 'undef',
-  String $key_content  = 'undef',
+  Hash $vhosts = {},
 )  {
 
   validate_hash( $vhosts )

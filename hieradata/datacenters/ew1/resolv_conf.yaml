@@ -1,0 +1,7 @@
+---
+resolv_conf::nameservers:
+  - localhost
+resolv_conf::searchpath:
+  - ew1.lan
+  - node.ew1.consul
+  - node.consul
