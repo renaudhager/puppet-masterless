@@ -72,6 +72,42 @@ profiles::consul_template::templates::instances:
           proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
         }
       }
+  'secretmessage':
+    action: 'service nginx reload'
+    content: |
+      upstream secretmessage_backend {
+       least_conn;
+      {{range service "secretmessage"}}
+       server {{.Address}}:{{.Port}};
+      {{end}}
+      }
+      server {
+        listen *:80;
+        server_name           secretmessage.renorains.net;
+        client_max_body_size 256M;
+
+        index  index.html index.htm index.php;
+
+        access_log            /var/log/nginx/secretmessage.renorains.net.access.log combined;
+        error_log             /var/log/nginx/secretmessage.renorains.net.error.log;
+
+        location /healthcheck {
+
+          return 200;
+        }
+
+        location / {
+          # auth_basic "Restricted Content";
+          # auth_basic_user_file /etc/nginx/htpasswd;
+          proxy_pass            http://secretmessage_backend;
+          proxy_read_timeout    1800;
+          proxy_connect_timeout 1800;
+          proxy_redirect        off;
+          proxy_set_header      Host $host;
+          proxy_set_header      X-Real-IP $remote_addr;
+          proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+      }
   'webapp':
     action: 'service nginx reload'
     content: |
