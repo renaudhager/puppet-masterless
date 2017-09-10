@@ -19,7 +19,7 @@ consul::services:
   webapp-lb:
     address: "%{::ipaddress_eth0}"
     checks:
-      - script: "curl https://localhost:8081/healthcheck >/dev/null 2>&1"
+      - script: "curl localhost:80/healthcheck >/dev/null 2>&1"
         interval: '10s'
     port: 8081
     tags:
